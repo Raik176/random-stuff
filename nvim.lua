@@ -146,7 +146,7 @@ require("lazy").setup({
   }
 })
 
-vim.opt.colorscheme = "tokyonight-night" -- Set theme
+vim.cmd([[colorscheme tokyonight-night]]) -- Set theme
 vim.opt.number = true -- Enable line numbers
 vim.opt.fillchars = { eob = "~" } --hardcode cuz why not
 
