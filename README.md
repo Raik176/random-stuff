@@ -5,7 +5,7 @@ Use this as your `init.lua`, put it here:
   - MacOS: `~/.config/nvim/init.lua`
 ```lua
 local file = "nvim.lua"
-local path = vim.fn.stdpath('config').."/"..file
+local path = vim.fn.expand(vim.fn.stdpath('config')..'/'..file)
 local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file
 
 local function update_config()
@@ -23,7 +23,7 @@ local function update_config()
     else
         write()
     end
-    dofile(file)
+    dofile(path)
 end
 
 vim.loop.new_async(vim.schedule_wrap(update_config)):send()
