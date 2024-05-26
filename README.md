@@ -1,30 +1,30 @@
 # Nvim `init.lua`
+Use this as your `init.lua`, put it here:
+  - Windows: `%localappdata%\nvim\init.lua`
+  - Linux: `~/.config/nvim/init.lua`
+  - MacOS: `~/.config/nvim/init.lua`
 ```lua
 local file = "nvim.lua"
 local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file
 
 local function update_config()
-  local out = vim.fn.system({ "curl", "-s", url })
-  local message = ""
-  local fd = vim.loop.fs_open(file, "w+", 438)
-  local function write_config()
-    vim.loop.fs_write(fd, out)
-    message = "Updated your config! Please restart Neovim."
-  end
-  if not fd then
-    write_config()
-  else
-    local stat = vim.loop.fs_fstat(fd)
-    local content = vim.loop.fs_read(fd, stat.size, 0)
-    if content ~= out then
-      write_config()
-    else
-      message = "Your config is up to date."
+    local response = vim.fn.system({"curl", "-s", url})
+    local function write()
+        local fd = vim.loop.fs_open(file, "w+", 438)
+        vim.loop.fs_write(fd, response, 0)
+        vim.loop.fs_close(fd)
+        vim.notify("Updated your config!")
     end
-  end
-  vim.loop.fs_close(fd)
-  dofile(file)
-  vim.notify(message)
+    if vim.loop.fs_stat(file) then
+        if response ~= table.concat(vim.fn.readfile(file)) then
+            write()
+        else
+            vim.notify("Your config is up to date.")
+        end
+    else
+        write()
+    end
+    dofile(file)
 end
 
 vim.loop.new_async(vim.schedule_wrap(update_config)):send()
