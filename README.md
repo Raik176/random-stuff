@@ -18,8 +18,6 @@ local function update_config()
     if vim.loop.fs_stat(file) then
         if response ~= table.concat(vim.fn.readfile(file)) then
             write()
-        else
-            vim.notify("Your config is up to date.")
         end
     else
         write()
