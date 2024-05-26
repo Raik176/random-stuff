@@ -25,18 +25,12 @@ local lang_servers = {
 
       client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
         runtime = {
-          -- Tell the language server which version of Lua you're using
-          -- (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT'
         },
-        -- Make the server aware of Neovim runtime files
         workspace = {
           checkThirdParty = false,
           library = {
             vim.env.VIMRUNTIME
-            -- Depending on the usage, you might want to add additional paths here.
-            -- "${3rd}/luv/library"
-            -- "${3rd}/busted/library",
           }
       }
     })
@@ -102,10 +96,8 @@ require("lazy").setup({
     wilder.set_option('renderer', wilder.popupmenu_renderer(
       wilder.popupmenu_border_theme({
         highlights = {
-          border = 'Normal', -- highlight to use for the border
+          border = 'Normal',
         },
-        -- 'single', 'double', 'rounded' or 'solid'
-        -- can also be a list of 8 characters, see :h wilder#popupmenu_border_theme() for more details
         border = 'rounded',
       })
     ))
