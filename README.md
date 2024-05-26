@@ -1,4 +1,4 @@
-# Nvim `init.lua`
+# NeoVim `init.lua`
 Use this as your `init.lua`, put it here:
   - Windows: `%localappdata%\nvim\init.lua`
   - Linux: `~/.config/nvim/init.lua`
