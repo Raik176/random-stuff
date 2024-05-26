@@ -85,6 +85,8 @@ require("lazy").setup({
 
   {'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}, opts = { }},
 
+  { 'wakatime/vim-wakatime', lazy = false },
+    
   {'gelguy/wilder.nvim', lazy = true, event = "CmdlineEnter", config = function()
     local wilder = require('wilder')
     wilder.setup({modes = {':', '/', '?'}})
