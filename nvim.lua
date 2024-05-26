@@ -154,8 +154,8 @@ require("lazy").setup({
   }
 })
 
-vim.cmd([[colorscheme tokyonight-night]]) -- Set theme
-vim.cmd([[set number]]) -- Enable line numbers
+vim.opt.colorscheme = "tokyonight-night" -- Set theme
+vim.opt.number = true -- Enable line numbers
 vim.opt.fillchars = { eob = "~" } --hardcode cuz why not
 
 vim.api.nvim_create_autocmd({"BufWinEnter"}, { -- Open new buffers in a new buffer tab
