@@ -23,7 +23,7 @@ local function update_config()
     end
   end
   vim.loop.fs_close(fd)
-  dofile("nvim.lua")
+  dofile(file)
   vim.notify(message)
 end
 
