@@ -27,8 +27,5 @@ local function update_config()
   vim.notify(message)
 end
 
-coroutine.wrap(update_config)()
-end
-
-coroutine.wrap(download_config)()
+vim.loop.new_async(vim.schedule_wrap(update_config)):send()
 ```
