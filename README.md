@@ -5,18 +5,19 @@ Use this as your `init.lua`, put it here:
   - MacOS: `~/.config/nvim/init.lua`
 ```lua
 local file = "nvim.lua"
+local path = vim.fn.stdpath('config').."/"..file
 local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file
 
 local function update_config()
     local response = vim.fn.system({"curl", "-s", url})
     local function write()
-        local fd = vim.loop.fs_open(file, "w+", 438)
+        local fd = vim.loop.fs_open(path, "w+", 438)
         vim.loop.fs_write(fd, response, 0)
         vim.loop.fs_close(fd)
         vim.notify("Updated your config!")
     end
-    if vim.loop.fs_stat(file) then
-        if response ~= table.concat(vim.fn.readfile(file)) then
+    if vim.loop.fs_stat(path) then
+        if response ~= table.concat(vim.fn.readfile(path)) then
             write()
         end
     else
