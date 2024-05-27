@@ -131,6 +131,9 @@ require("lazy").setup({
   }},
   {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
   {'vague2k/huez.nvim', import = "huez-manager.import", opts = {}, dependencies = { 'nvim-telescope/telescope.nvim' }},
+  {'obaland/vfiler.vim', config = function() -- not really config but it opens the explorer whenever you start nvim which is quite nice
+      require('vfiler').start()
+  end},
   --'dasupradyumna/midnight.nvim'
   'folke/tokyonight.nvim',
 
