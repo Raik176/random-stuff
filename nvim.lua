@@ -149,6 +149,7 @@ require("lazy").setup({
   }
 })
 
+vim.cmd([[colorscheme tokyonight-storm]]) -- hardcode even though huez is installed because it doesnt load the last picked theme.
 vim.opt.number = true -- Enable line numbers
 vim.opt.fillchars = { eob = "~" } --hardcode cuz why not
 
