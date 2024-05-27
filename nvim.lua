@@ -130,6 +130,8 @@ require("lazy").setup({
     keys = {
     }
   }},
+  {'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
+  {'vague2k/huez.nvim', import = "huez-manager.import", opts = {}, dependencies = { 'nvim-telescope/telescope.nvim' }}
   --'dasupradyumna/midnight.nvim'
   'folke/tokyonight.nvim',
 
