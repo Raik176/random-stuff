@@ -7,23 +7,32 @@ Use this as your `init.lua`, put it here:
 local file = "nvim.lua"
 local path = vim.fn.expand(vim.fn.stdpath('config')..'/'..file)
 local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file
+local do_update = true
 
 local function update_config()
+    if do_update == false then
+      dofile(path)
+      return
+    end
     local response = vim.fn.system({"curl", "-s", url})
+    local message = ""
     local function write()
         local fd = vim.loop.fs_open(path, "w+", 438)
         vim.loop.fs_write(fd, response, 0)
         vim.loop.fs_close(fd)
-        vim.notify("Updated your config!")
+        message = "Updated your config!"
     end
     if vim.loop.fs_stat(path) then
-        if response ~= table.concat(vim.fn.readfile(path)) then
+        if response ~= table.concat(vim.fn.readfile(path), '\n') then
             write()
         end
     else
         write()
     end
     dofile(path)
+    if message ~= "" then
+        vim.notify(message) -- Notify here so if vim.notify is replaced it'll use that instead.
+    end
 end
 
 vim.loop.new_async(vim.schedule_wrap(update_config)):send()
