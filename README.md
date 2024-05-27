@@ -6,7 +6,7 @@ Use this as your `init.lua`, put it here:
 ```lua
 local file = "nvim.lua"
 local path = vim.fn.expand(vim.fn.stdpath('config')..'/'..file)
-local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file
+local url = "https://raw.githubusercontent.com/Raik176/random-stuff/master/"..file.."?cache_bust=timestamp"
 local do_update = true
 
 local function update_config()
