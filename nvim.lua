@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local lang_servers = {
+  gdscript = {},
   mesonlsp = {},
   asm_lsp = {},
   vimls = {},
