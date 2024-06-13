@@ -18,6 +18,7 @@ local lang_servers = {
   asm_lsp = {},
   vimls = {},
   eslint = {},
+  clangd = {},
   lua_ls = {
     on_init = function(client)
       local path = client.workspace_folders[1].name
